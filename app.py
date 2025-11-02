@@ -1,19 +1,16 @@
 from flask import Flask, render_template, request, redirect, session, url_for
-import mysql.connector
+import psycopg2
+import os
 import random
 from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "supersecret"
 
-# 🧠 MySQL Connection
+# 🧠 PostgreSQL Connection (Render)
 def get_db_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="7055",
-        database="AILostFound"
-    )
+    conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
+    return conn
 
 # 🏠 Home Page
 @app.route('/')
@@ -33,7 +30,7 @@ def add_item():
         cursor = conn.cursor()
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS Items (
-                ItemID INT PRIMARY KEY AUTO_INCREMENT,
+                ItemID SERIAL PRIMARY KEY,
                 Name VARCHAR(100),
                 Category VARCHAR(100),
                 Description TEXT,
@@ -91,7 +88,7 @@ def report_lost():
         cursor = conn.cursor()
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS LostItems (
-                LostID INT PRIMARY KEY AUTO_INCREMENT,
+                LostID SERIAL PRIMARY KEY,
                 OwnerName VARCHAR(100),
                 Contact VARCHAR(100),
                 ItemName VARCHAR(100),
@@ -107,14 +104,13 @@ def report_lost():
         cursor.close()
         conn.close()
 
-        # After submission, show success animation instead of direct redirect
         return render_template('lost_success.html', name=owner_name, item=lost_name)
     return render_template('report_lost.html')
+
 # 📘 About Page
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
