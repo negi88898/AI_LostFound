@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Lost & Found Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <h1>AI Lost & Found Portal</h1>
+   
+ </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>Created by <strong>Ankit Negi</strong> | MCA, DIT University | 
+
+    <a href="{{ url_for('about') }}" class="about-link">About</a>
+  </p>
+
+    <p>Smart AI-powered Lost and Found system connecting people with their belongings.</p>
+  </footer>
+
+</body>
+</html>
+
+
+
+
+
+

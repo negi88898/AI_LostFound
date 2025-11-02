@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="ai-screen">
+  <div class="ai-loader"></div>
+  <h2>🤖 AI is processing your report...</h2>
+  <p>Please wait while our system analyzes and matches your lost item.</p>
+
+  <div id="success-message" style="display:none;">
+    <h2>✅ Your lost item has been reported successfully!</h2>
+    <p>AI will now start matching your item with possible found records.</p>
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    document.querySelector('.ai-loader').style.display = 'none';
+    document.querySelector('h2').style.display = 'none';
+    document.querySelector('p').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  }, 2000); // after 2 seconds, show success
+
+  setTimeout(() => {
+    window.location.href = '/'; // redirect to home after 4 seconds
+  }, 4000);
+</script>
+{% endblock %}

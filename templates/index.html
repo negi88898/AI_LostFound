@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h1>🤖 AI-Powered Lost & Found System</h1>
+    <p><b>Smart system to help match found and lost items using AI predictions.</b></p>
+    <a href="{{ url_for('add_item') }}" class="btn">📦 Report Found Item</a>
+    <a href="{{ url_for('report_lost') }}" class="btn">🔍 Report Lost Item</a>
+  </div>
+{% endblock %}

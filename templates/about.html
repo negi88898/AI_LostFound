@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="about-page">
+  <h1>About This Project</h1>
+
+  <p>
+    The <b>AI Lost & Found Portal</b> is a web-based system developed using <b>Python (Flask)</b> and <b>MySQL</b> that helps users to
+    report and locate lost or found items efficiently. This platform aims to bridge the gap between individuals who have lost
+    their belongings and those who have found unclaimed items.
+  </p>
+
+  <p>
+    The portal uses a simulated <b>Artificial Intelligence (AI)</b> logic that analyzes the description of a found item and predicts 
+    the most likely owner’s name with a <b>confidence score</b>. This represents how AI can assist humans in making 
+    smart, data-driven decisions in real-world applications.
+  </p>
+
+  <p>
+    Users can report both <b>found items</b> and <b>lost items</b> with details such as item name, description, and category. 
+    All records are stored securely in a MySQL database, making the process organized and easy to track. 
+    The system demonstrates how database management, web development, and AI logic can work together to create a practical solution.
+  </p>
+
+  <h2>About the Developer</h2>
+
+  <p>
+    I am <b>Ankit Negi</b>, currently pursuing a <b>Master of Computer Applications (MCA)</b> from <b>DIT University, Dehradun</b>.
+    My passion lies in creating intelligent and user-friendly applications that solve real-world problems through
+    programming, logic, and innovation.
+  </p>
+
+  <p>
+    This project was built as part of my academic journey, where I explored how AI and web technologies can collaborate
+    to enhance everyday experiences. Through this, I aimed to show how even small applications can make a big impact
+    when designed with the right combination of creativity and technology.
+  </p>
+
+  <p class="closing-line">
+    The <b>AI Lost & Found Portal</b> is more than a project — it’s a step toward integrating Artificial Intelligence 
+    into practical, real-life use cases that make human tasks easier, faster, and more reliable.
+  </p>
+
+  <div class="back-home">
+    <a href="{{ url_for('home') }}" class="btn">🏠 Back to Home</a>
+  </div>
+</div>
+{% endblock %}

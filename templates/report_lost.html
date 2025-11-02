@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="form-card">
+    <h2>Report Lost Item</h2>
+    <form action="{{ url_for('report_lost') }}" method="POST" class="form-box">
+      <label>Your Name:</label>
+      <input type="text" name="owner_name" required>
+
+      <label>Contact Info:</label>
+      <input type="text" name="contact" required>
+
+      <label>Lost Item Name:</label>
+      <input type="text" name="lost_name" required>
+
+      <label>Category:</label>
+      <input type="text" name="lost_category" required>
+
+      <label>Description:</label>
+      <textarea name="lost_description" required></textarea>
+
+      <button type="submit" class="btn">Submit Lost Item</button>
+    </form>
+    <a href="/" class="home-link">🏠 Back to Home</a>
+  </div>
+{% endblock %}

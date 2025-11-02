@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="ai-card" id="loading-screen">
+  <h2>🤖 AI is analyzing your item...</h2>
+
+  <!-- Animated progress circle -->
+  <div class="progress-ring">
+    <svg width="150" height="150">
+      <circle class="progress-ring__circle" stroke="#00ffcc" stroke-width="8" fill="transparent" r="65" cx="75" cy="75" />
+    </svg>
+    <div class="progress-text" id="progress-text">0%</div>
+  </div>
+
+  <!-- Animated AI scanning messages -->
+  <div id="ai-status-text" class="ai-status">
+    Initializing AI system...
+  </div>
+
+  <p class="loading-note">Please wait while the system matches your item with possible owners.</p>
+</div>
+
+<!-- Hidden AI result -->
+<div id="ai-result" class="result-card" style="display:none;">
+  <h2>🎯 AI Match Found!</h2>
+  <p><strong>Possible Owner:</strong> {{ owner }}</p>
+  <p><strong>Confidence Score:</strong> {{ confidence }}%</p>
+  <p><strong>Contact Info:</strong> {{ owner|replace(" ", ".")|lower }}@gmail.com</p>
+  <a href="/" class="btn">🏠 Back to Home</a>
+</div>
+
+<script>
+  // Circle animation setup
+  const circle = document.querySelector('.progress-ring__circle');
+  const radius = circle.r.baseVal.value;
+  const circumference = 2 * Math.PI * radius;
+  const progressText = document.getElementById('progress-text');
+  const aiStatus = document.getElementById('ai-status-text');
+
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = circumference;
+
+  function setProgress(percent) {
+    const offset = circumference - (percent / 100) * circumference;
+    circle.style.strokeDashoffset = offset;
+    progressText.textContent = `${percent}%`;
+  }
+
+  // Animated progress with AI text
+  let progress = 0;
+  const aiMessages = [
+    "Scanning object structure...",
+    "Extracting features...",
+    "Matching against lost records...",
+    "Running similarity model...",
+    "Finalizing prediction..."
+  ];
+  let msgIndex = 0;
+
+  const interval = setInterval(() => {
+    progress += 2;
+    setProgress(progress);
+
+    if (progress % 20 === 0 && msgIndex < aiMessages.length) {
+      aiStatus.textContent = aiMessages[msgIndex];
+      msgIndex++;
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      aiStatus.textContent = "✅ Analysis complete!";
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('ai-result').style.display = 'block';
+      }, 800);
+    }
+  }, 50);
+</script>
+
+{% endblock %}

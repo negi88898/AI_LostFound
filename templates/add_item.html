@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="form-card">
+    <h2>Report Found Item</h2>
+    <form action="{{ url_for('add_item') }}" method="POST" class="form-box">
+      <label>Item Name:</label>
+      <input type="text" name="name" required>
+
+      <label>Category:</label>
+      <input type="text" name="category" required>
+
+      <label>Description:</label>
+      <textarea name="description" required></textarea>
+
+      <button type="submit" class="btn">Submit Found Item</button>
+    </form>
+    <a href="/" class="home-link">🏠 Back to Home</a>
+  </div>
+{% endblock %}

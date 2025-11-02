@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="ai-card">
+  <h2>🤖 AI is analyzing your item...</h2>
+  <div class="loader"></div>
+  <p>Please wait while the system matches your item with possible owners.</p>
+</div>
+
+<script>
+  setTimeout(function(){
+      alert("AI suggests that {{ owner }} might be the owner (Confidence: {{ confidence }}%)");
+      window.location.href = "{{ url_for('home') }}";
+  }, 3000);
+</script>
+{% endblock %}
